@@ -24,6 +24,30 @@ body::before {
     opacity: 0.1; /* Ajuste a transparência aqui */
     z-index: -1;
 }
+.contact-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: left;
+    margin-top: 15px;
+}
+
+.btn {
+    background-color: #1e1e1e;
+    color: #E0E0E0;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s;
+    font-weight: bold;
+    display: inline-block;
+    border: 1px solid #E0E0E0;
+}
+
+.btn:hover {
+    background-color: #E0E0E0;
+    color: #1e1e1e;
+}
+
 .container {
     width: 90%;
     max-width: 800px;
