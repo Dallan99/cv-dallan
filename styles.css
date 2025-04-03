@@ -5,6 +5,24 @@
     box-sizing: border-box;
     font-family: 'Arial', sans-serif;
 }
+.avatar-container {
+    text-align: center;
+    margin-top: 20px;
+}
+.avatar {
+    width: 150px;
+    height: auto;
+    border-radius: 50%;
+    animation: wave 5s infinite; /* Animação de aceno */
+}
+
+@keyframes wave {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(20deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(-20deg); }
+    100% { transform: rotate(0deg); }
+}
 
 body {
     background-color: #121212;
