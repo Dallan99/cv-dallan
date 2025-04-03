@@ -15,7 +15,7 @@ body {
 
 header {
     background: #1f1f1f;
-    color: #8d71f1;
+    color: #0099ff;
     text-align: center;
     padding: 20px;
     border-radius: 8px;
@@ -30,13 +30,13 @@ header h1 {
 
 header p, header a {
     font-size: 16px;
-    color: #8d71f1;
+    color: #0099ff;
     text-decoration: none;
 }
 
 header a:hover {
     text-decoration: underline;
-    color: #8d71f1;
+    color: #0099ff;
 }
 
 section {
@@ -48,10 +48,10 @@ section {
 }
 
 h2 {
-    border-bottom: 2px solid #8d71f1;
+    border-bottom: 2px solid #0099ff;
     padding-bottom: 5px;
     margin-bottom: 15px;
-    color: #8d71f1;
+    color: #00aaff;
 }
 
 ul {
@@ -59,7 +59,7 @@ ul {
 }
 
 ul li {
-    background: #8d71f1;
+    background: #0099ff;
     color: #121212;
     padding: 10px;
     margin-bottom: 5px;
@@ -87,7 +87,7 @@ p {
 }
 .download-link {
     display: inline-block;
-    background-color: #8d71f1;
+    background-color: #00aaff;
     color: #121212;
     padding: 10px 15px;
     border-radius: 5px;
@@ -97,7 +97,7 @@ p {
 }
 
 .download-link:hover {
-    background-color: #8d71f1;
+    background-color: #00aaff;
     color: #ffffff;
 }
 .social-buttons {
@@ -108,7 +108,7 @@ p {
 
 .social-button {
     display: inline-block;
-    background-color: #8d71f1;
+    background-color: #00aaff;
     color: #121212;
     padding: 10px 15px;
     border-radius: 5px;
@@ -118,6 +118,6 @@ p {
 }
 
 .social-button:hover {
-    background-color: #8d71f1;
+    background-color: #00aaff;
     color: #ffffff;
 }
