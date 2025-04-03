@@ -1,90 +1,123 @@
-/* Estilo dark tecnológico */
-
-body {
-    background: #121212 ;
-    background-size: cover;
-    color: #E0E0E0;
-    font-family: 'Arial', sans-serif;
+/* Reset básico para remover margens e preenchimentos padrão */
+* {
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
-body::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('marca-dagua.png') no-repeat center center fixed;
-    background-size: cover;
-    opacity: 0.1; /* Ajuste a transparência aqui */
-    z-index: -1;
-}
-.contact-buttons {
-    display: flex;
-    gap: 10px;
-    justify-content: left;
-    margin-top: 15px;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
 }
 
-.btn {
-    background-color: #1e1e1e;
-    color: #E0E0E0;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: 0.3s;
-    font-weight: bold;
-    display: inline-block;
-    border: 1px solid #E0E0E0;
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+    line-height: 1.6;
+    padding: 20px;
 }
 
-.btn:hover {
-    background-color: #E0E0E0;
-    color: #1e1e1e;
-}
-
-.container {
-    width: 90%;
-    max-width: 800px;
-    background: #1E1E1E;
+header {
+    background: #1f1f1f;
+    color: #8d71f1;
+    text-align: center;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 10px rgba(163, 102, 233, 0.5);
 }
 
-h1, h2 {
-    color: #00FFFF;
+header h1 {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+header p, header a {
+    font-size: 16px;
+    color: #8d71f1;
+    text-decoration: none;
+}
+
+header a:hover {
+    text-decoration: underline;
+    color: #8d71f1;
+}
+
+section {
+    background: #1f1f1f;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(163, 102, 233, 0.5);
+}
+
+h2 {
+    border-bottom: 2px solid #8d71f1;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    color: #8d71f1;
 }
 
 ul {
     list-style-type: none;
-    padding: 0;
 }
 
 ul li {
-    background: #292929;
-    margin: 5px 0;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-button {
-    background: #00FFFF;
+    background: #8d71f1;
     color: #121212;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 4px;
     font-weight: bold;
-    border-radius: 5px;
-    display: block;
-    margin: 20px auto 0;
 }
 
-button:hover {
-    background: #0099CC;
+p {
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    header h1 {
+        font-size: 20px;
+    }
+    header p {
+        font-size: 14px;
+    }
+    h2 {
+        font-size: 18px;
+    }
+}
+.download-link {
+    display: inline-block;
+    background-color: #8d71f1;
+    color: #121212;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s, color 0.3s;
+}
+
+.download-link:hover {
+    background-color: #8d71f1;
+    color: #ffffff;
+}
+.social-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.social-button {
+    display: inline-block;
+    background-color: #8d71f1;
+    color: #121212;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s, color 0.3s;
+}
+
+.social-button:hover {
+    background-color: #8d71f1;
+    color: #ffffff;
 }
