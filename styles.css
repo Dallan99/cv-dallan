@@ -5,7 +5,7 @@
     box-sizing: border-box;
     font-family: 'Arial', sans-serif;
 }
-.avatar-container {
+/*.avatar-container {
     text-align: center;
     margin-top: 20px;
 }
@@ -13,17 +13,18 @@
     width: 150px;
     height: auto;
     border-radius: 50%;
-    animation: wave 5s infinite; /* Animação de aceno */
-}
+    animation: wave 5s infinite; /* Animação de aceno
+ } */
 
-@keyframes wave {
+
+/*@keyframes wave {
     0% { transform: rotate(0deg); }
     25% { transform: rotate(20deg); }
     50% { transform: rotate(0deg); }
     75% { transform: rotate(-20deg); }
     100% { transform: rotate(0deg); }
-}
-
+}*/
+/* Estilos gerais */
 body {
     background-color: #121212;
     color: #e0e0e0;
