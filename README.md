@@ -34,10 +34,5 @@ Caso queira clonar e rodar o projeto em sua máquina:
    ```
 3. Abra o arquivo `index.html` no navegador.
 
-## 📩 Contato
-
-Se desejar entrar em contato comigo, acesse meu [LinkedIn](https://www.linkedin.com/in/dallan99/) ou envie um e-mail para **seuemail@email.com**.
-
----
 
 📌 *Sinta-se à vontade para contribuir, sugerir melhorias ou utilizar este projeto como inspiração!*
