@@ -1,0 +1,81 @@
+{
+  "name": "cv-dallan-borgheresi",
+  "version": "1.0.0",
+  "description": "Currículo online interativo de Dallan Borgheresi - Prompt Engineer & AI-Assisted Developer",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "dev": "live-server --port=3000 --open=/index.html",
+    "build": "npm run minify-css && npm run minify-js",
+    "minify-css": "cleancss -o assets/css/style.min.css assets/css/style.css assets/css/responsive.css",
+    "minify-js": "uglifyjs assets/js/main.js -o assets/js/main.min.js",
+    "optimize-images": "imagemin assets/images/*.{jpg,png} --out-dir=assets/images/optimized",
+    "check-links": "hyperlink index.html",
+    "test-responsive": "echo 'Teste manual necessário em diferentes dispositivos'",
+    "deploy": "gh-pages -d .",
+    "lint": "eslint assets/js/*.js",
+    "format": "prettier --write *.html assets/css/*.css assets/js/*.js",
+    "validate-html": "html-validate index.html",
+    "lighthouse": "lighthouse http://localhost:3000 --output html --output-path ./lighthouse-report.html",
+    "serve-https": "http-server -S -C cert.pem -K key.pem -p 8443"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Dallan99/cv-dallan.git"
+  },
+  "keywords": [
+    "cv",
+    "curriculum",
+    "resume",
+    "portfolio",
+    "dallan",
+    "borgheresi",
+    "prompt-engineer",
+    "ai-developer",
+    "react",
+    "javascript",
+    "html5",
+    "css3",
+    "responsive",
+    "web-development"
+  ],
+  "author": {
+    "name": "Dallan Ricardo de Moraes Zanini Borgheresi",
+    "email": "dallanr@gmail.com",
+    "url": "https://www.linkedin.com/in/dallan-borgheresi"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Dallan99/cv-dallan/issues"
+  },
+  "homepage": "https://dallan99.github.io/cv-dallan",
+  "devDependencies": {
+    "clean-css-cli": "^5.6.2",
+    "eslint": "^8.57.0",
+    "gh-pages": "^6.0.0",
+    "html-validate": "^8.7.3",
+    "http-server": "^14.1.1",
+    "hyperlink": "^5.0.4",
+    "imagemin": "^8.0.1",
+    "imagemin-cli": "^7.0.0",
+    "lighthouse": "^11.4.0",
+    "live-server": "^1.2.2",
+    "prettier": "^3.1.1",
+    "uglify-js": "^3.17.4"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ],
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ]
+}

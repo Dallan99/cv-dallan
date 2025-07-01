@@ -1,0 +1,160 @@
+# ===================================
+# CV DALLAN - .GITIGNORE
+# ===================================
+
+# Operating System Files
+# ===================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# IDE and Editor Files
+# ===================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.sublime-*
+*.sublime-project
+*.sublime-workspace
+
+# Logs and Temporary Files
+# ===================================
+*.log
+*.tmp
+*.temp
+.cache/
+.temp/
+logs/
+
+# Node.js Dependencies (if using npm)
+# ===================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Build and Distribution
+# ===================================
+dist/
+build/
+.output/
+.nuxt/
+.next/
+.vercel/
+.netlify/
+
+# Environment Variables
+# ===================================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.development
+.env.production
+
+# Backup Files
+# ===================================
+*.bak
+*.backup
+*.old
+*.orig
+
+# Image Processing
+# ===================================
+*.ai
+*.psd
+*.sketch
+.imageoptim/
+
+# Analytics and Tracking
+# ===================================
+google-analytics.json
+ga-*.json
+
+# Local Development
+# ===================================
+localhost.*
+127.0.0.1.*
+*.local
+
+# WordPress (if integrated)
+# ===================================
+wp-config.php
+wp-content/uploads/
+wp-content/cache/
+
+# Python (if using build tools)
+# ===================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Ruby (if using Jekyll/build tools)
+# ===================================
+.bundle/
+.sass-cache/
+_site/
+.jekyll-cache/
+.jekyll-metadata
+Gemfile.lock
+
+# Documentation Build
+# ===================================
+docs/_build/
+docs/.doctrees/
+
+# Testing
+# ===================================
+.coverage
+htmlcov/
+.tox/
+.pytest_cache/
+coverage.xml
+*.cover
+.hypothesis/
+
+# Miscellaneous
+# ===================================
+*.zip
+*.tar.gz
+*.rar
+*.7z
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# Local Notes and Todos
+# ===================================
+TODO.md
+NOTES.md
+notes.txt
+todo.txt
+.notes/
+
+# Deployment Files (keep local only)
+# ===================================
+deploy.sh
+deploy.bat
+.deploy/
+.deployment
+.azure/
+
+# Keep these files
+# ===================================
+!.gitkeep
+!.htaccess
