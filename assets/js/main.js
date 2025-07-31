@@ -81,347 +81,301 @@ document.addEventListener('DOMContentLoaded', function() {
     // FADE IN ANIMATION ON SCROLL
     // ===================================
     function initScrollAnimations() {
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        // Verificar se IntersectionObserver é suportado
+        if ('IntersectionObserver' in window) {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all fade-in elements
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
             });
-        }, observerOptions);
-
-        // Observe all fade-in elements
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
+        } else {
+            // Fallback para navegadores que não suportam IntersectionObserver
+            document.querySelectorAll('.fade-in').forEach(el => {
+                el.classList.add('visible');
+            });
+        }
     }
 
     initScrollAnimations();
 
     // ===================================
-    // CONTACT FORM HANDLING
+    // PROJECT CARD HOVER EFFECTS
     // ===================================
-    function initContactForm() {
-        const contactForm = document.getElementById('contactForm');
+    function initProjectCardEffects() {
+        const projectCards = document.querySelectorAll('.project-card');
         
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Get form data
-                const formData = new FormData(this);
-                const name = formData.get('name');
-                const email = formData.get('email');
-                const subject = formData.get('subject');
-                const message = formData.get('message');
-                
-                // Validate form
-                if (!name || !email || !subject || !message) {
-                    showNotification('Por favor, preencha todos os campos.', 'error');
-                    return;
-                }
-                
-                // Create mailto link
-                const mailtoSubject = encodeURIComponent(subject);
-                const mailtoBody = encodeURIComponent(
-                    `Nome: ${name}\n` +
-                    `Email: ${email}\n\n` +
-                    `Mensagem:\n${message}`
-                );
-                
-                const mailtoLink = `mailto:dallanr@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
-                
-                // Open email client
-                window.location.href = mailtoLink;
-                
-                // Reset form
-                this.reset();
-                
-                // Show success message
-                showNotification('Obrigado pelo contato! Seu cliente de email será aberto para enviar a mensagem.', 'success');
+        projectCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+                this.style.boxShadow = '0 15px 40px rgba(0,0,0,0.15)';
             });
-        }
-    }
-
-    initContactForm();
-
-    // ===================================
-    // NOTIFICATION SYSTEM
-    // ===================================
-    function showNotification(message, type = 'info') {
-        // Remove existing notifications
-        const existingNotification = document.querySelector('.notification');
-        if (existingNotification) {
-            existingNotification.remove();
-        }
-        
-        // Create notification element
-        const notification = document.createElement('div');
-        notification.className = `notification notification-${type}`;
-        notification.innerHTML = `
-            <span>${message}</span>
-            <button type="button" class="notification-close">&times;</button>
-        `;
-        
-        // Add styles
-        notification.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: ${type === 'error' ? '#e74c3c' : type === 'success' ? '#27ae60' : '#3498db'};
-            color: white;
-            padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            max-width: 400px;
-            animation: slideInRight 0.3s ease;
-        `;
-        
-        // Add close button functionality
-        const closeBtn = notification.querySelector('.notification-close');
-        closeBtn.style.cssText = `
-            background: none;
-            border: none;
-            color: white;
-            font-size: 18px;
-            cursor: pointer;
-            padding: 0;
-            margin-left: 10px;
-        `;
-        
-        closeBtn.addEventListener('click', () => {
-            notification.remove();
-        });
-        
-        // Add to page
-        document.body.appendChild(notification);
-        
-        // Auto remove after 5 seconds
-        setTimeout(() => {
-            if (notification.parentNode) {
-                notification.remove();
-            }
-        }, 5000);
-    }
-
-    // ===================================
-    // TYPING ANIMATION FOR HEADER
-    // ===================================
-    function initTypingAnimation() {
-        const subtitleElement = document.querySelector('.header .subtitle');
-        if (!subtitleElement) return;
-        
-        const originalText = subtitleElement.textContent;
-        const typingSpeed = 50;
-        const pauseDuration = 2000;
-        
-        function typeText() {
-            subtitleElement.textContent = '';
-            let i = 0;
             
-            const typeInterval = setInterval(() => {
-                subtitleElement.textContent += originalText.charAt(i);
-                i++;
-                
-                if (i >= originalText.length) {
-                    clearInterval(typeInterval);
-                    // Add cursor blink effect
-                    subtitleElement.innerHTML += '<span class="typing-cursor">|</span>';
-                    
-                    // Remove cursor after pause
-                    setTimeout(() => {
-                        const cursor = subtitleElement.querySelector('.typing-cursor');
-                        if (cursor) cursor.remove();
-                    }, pauseDuration);
-                }
-            }, typingSpeed);
-        }
-        
-        // Start typing animation after page load
-        setTimeout(typeText, 1000);
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+            });
+        });
     }
 
-    // Uncomment to enable typing animation
-    // initTypingAnimation();
+    initProjectCardEffects();
 
     // ===================================
-    // SKILL TAGS INTERACTION
+    // ENHANCED BUTTON INTERACTIONS
     // ===================================
-    function initSkillTagsInteraction() {
+    function initButtonEffects() {
+        const buttons = document.querySelectorAll('.github-link, .live-demo, .company-link, .social-link');
+        
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.05)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+            
+            // Click effect
+            button.addEventListener('click', function() {
+                this.style.transform = 'translateY(1px) scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = 'translateY(-3px) scale(1.05)';
+                }, 150);
+            });
+        });
+    }
+
+    initButtonEffects();
+
+    // ===================================
+    // SKILL TAGS ANIMATION
+    // ===================================
+    function initSkillTagsAnimation() {
         const skillTags = document.querySelectorAll('.skill-tag');
         
-        skillTags.forEach(tag => {
-            tag.addEventListener('click', function() {
-                // Add click effect
-                this.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 150);
-                
-                // Could add functionality to show more info about the skill
-                const skillName = this.textContent;
-                console.log(`Clicked on skill: ${skillName}`);
-            });
+        skillTags.forEach((tag, index) => {
+            tag.style.opacity = '0';
+            tag.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                tag.style.transition = 'all 0.5s ease';
+                tag.style.opacity = '1';
+                tag.style.transform = 'translateY(0)';
+            }, index * 50);
         });
     }
 
-    initSkillTagsInteraction();
+    // Initialize with delay to ensure elements are loaded
+    setTimeout(initSkillTagsAnimation, 1000);
 
     // ===================================
-    // THEME TOGGLE (Optional feature)
+    // RESPONSIVE NAVIGATION TOGGLE
     // ===================================
-    function initThemeToggle() {
-        // Create theme toggle button
-        const themeToggle = document.createElement('button');
-        themeToggle.innerHTML = '🌙';
-        themeToggle.className = 'theme-toggle';
-        themeToggle.title = 'Alternar tema';
+    function initMobileNavigation() {
+        const nav = document.querySelector('.nav');
+        if (!nav) return;
         
-        themeToggle.style.cssText = `
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: none;
-            background: var(--primary-color);
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            z-index: 1000;
-            transition: all 0.3s ease;
-            display: none; /* Hidden by default */
-        `;
+        const navItems = nav.querySelector('ul');
+        if (!navItems) return;
         
-        themeToggle.addEventListener('click', function() {
-            document.body.classList.toggle('dark-theme');
-            this.innerHTML = document.body.classList.contains('dark-theme') ? '☀️' : '🌙';
+        // Create mobile menu button
+        const mobileMenuBtn = document.createElement('button');
+        mobileMenuBtn.className = 'mobile-menu-btn';
+        mobileMenuBtn.innerHTML = '☰';
+        mobileMenuBtn.style.display = 'none';
+        mobileMenuBtn.setAttribute('aria-label', 'Toggle navigation menu');
+        
+        nav.querySelector('.container').appendChild(mobileMenuBtn);
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navItems.classList.toggle('mobile-active');
             
-            // Save preference
-            localStorage.setItem('darkTheme', document.body.classList.contains('dark-theme'));
+            // Update ARIA attributes for accessibility
+            const isExpanded = navItems.classList.contains('mobile-active');
+            mobileMenuBtn.setAttribute('aria-expanded', isExpanded);
         });
         
-        // Load saved theme preference
-        if (localStorage.getItem('darkTheme') === 'true') {
-            document.body.classList.add('dark-theme');
-            themeToggle.innerHTML = '☀️';
+        // Handle mobile responsive behavior
+        function checkMobile() {
+            if (window.innerWidth <= 768) {
+                mobileMenuBtn.style.display = 'block';
+                navItems.classList.add('mobile-nav');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            } else {
+                mobileMenuBtn.style.display = 'none';
+                navItems.classList.remove('mobile-nav', 'mobile-active');
+            }
         }
         
-        // Uncomment to enable theme toggle
-        // document.body.appendChild(themeToggle);
-        // themeToggle.style.display = 'block';
+        window.addEventListener('resize', checkMobile);
+        checkMobile();
     }
 
-    // initThemeToggle();
+    initMobileNavigation();
 
     // ===================================
     // PERFORMANCE OPTIMIZATIONS
     // ===================================
     
-    // Lazy load images
-    function initLazyLoading() {
-        const images = document.querySelectorAll('img[data-src]');
+    // Throttle scroll events
+    function throttle(func, limit) {
+        let inThrottle;
+        return function() {
+            const args = arguments;
+            const context = this;
+            if (!inThrottle) {
+                func.apply(context, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        };
+    }
+    
+    // Apply throttling to scroll-dependent functions
+    window.addEventListener('scroll', throttle(updateProgressBar, 10));
+
+    // ===================================
+    // ACCESSIBILITY IMPROVEMENTS
+    // ===================================
+    function initAccessibility() {
+        // Add focus indicators for keyboard navigation
+        const focusableElements = document.querySelectorAll('a, button, input, select, textarea');
         
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src;
-                    img.classList.remove('lazy');
-                    imageObserver.unobserve(img);
-                }
+        focusableElements.forEach(element => {
+            element.addEventListener('focus', function() {
+                this.style.outline = '2px solid var(--secondary-color)';
+                this.style.outlineOffset = '2px';
+            });
+            
+            element.addEventListener('blur', function() {
+                this.style.outline = 'none';
             });
         });
         
-        images.forEach(img => imageObserver.observe(img));
+        // Add aria-labels where needed
+        const socialLinks = document.querySelectorAll('.social-link');
+        const platforms = ['LinkedIn', 'GitHub', 'Portfolio', 'Email'];
+        
+        socialLinks.forEach((link, index) => {
+            if (platforms[index]) {
+                link.setAttribute('aria-label', platforms[index]);
+            }
+        });
     }
 
-    initLazyLoading();
+    initAccessibility();
+
+    // ===================================
+    // LANGUAGE SWITCHER FUNCTIONALITY
+    // ===================================
+    function initLanguageSwitcher() {
+        const languageLinks = document.querySelectorAll('.language-switcher a');
+        
+        languageLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Don't prevent default - let the link work normally
+                // Just add a smooth transition effect
+                document.body.style.transition = 'opacity 0.3s ease';
+                document.body.style.opacity = '0.8';
+            });
+        });
+    }
+
+    initLanguageSwitcher();
+
+    // ===================================
+    // PROJECT LINKS ENHANCEMENT
+    // ===================================
+    function initProjectLinksEnhancement() {
+        const projectLinks = document.querySelectorAll('.github-link, .live-demo, .company-link');
+        
+        projectLinks.forEach(link => {
+            // Add loading state
+            link.addEventListener('click', function() {
+                const originalText = this.textContent;
+                const loadingText = this.classList.contains('live-demo') ? '🔄 Loading...' : '🔄 Opening...';
+                
+                // Check if it's Portuguese
+                if (document.documentElement.lang === 'pt-BR' || document.querySelector('html[lang="pt-BR"]')) {
+                    this.textContent = this.classList.contains('live-demo') ? '🔄 Carregando...' : '🔄 Abrindo...';
+                } else {
+                    this.textContent = loadingText;
+                }
+                
+                setTimeout(() => {
+                    this.textContent = originalText;
+                }, 2000);
+            });
+        });
+    }
+
+    initProjectLinksEnhancement();
 
     // ===================================
     // ERROR HANDLING
     // ===================================
     window.addEventListener('error', function(e) {
-        console.error('JavaScript error:', e.error);
-        // Could implement error reporting here
+        console.error('🚨 Erro capturado:', e.error);
+        
+        // Implement graceful fallbacks
+        if (e.error && e.error.message && e.error.message.includes('IntersectionObserver')) {
+            // Fallback for browsers without IntersectionObserver
+            document.querySelectorAll('.fade-in').forEach(el => {
+                el.classList.add('visible');
+            });
+        }
+    });
+
+    // Handle unhandled promise rejections
+    window.addEventListener('unhandledrejection', function(e) {
+        console.error('🚨 Promise rejection:', e.reason);
+        e.preventDefault();
     });
 
     // ===================================
-    // CONSOLE MESSAGE
+    // FINAL SETUP
     // ===================================
+    
+    // Mark page as fully loaded
+    document.body.classList.add('page-loaded');
+    
+    // Console welcome message
     console.log(`
     ╔══════════════════════════════════════╗
     ║                                      ║
     ║        CV - Dallan Borgheresi        ║
     ║                                      ║
-    ║    Prompt Engineer & AI Developer    ║
+    ║   Vibe Coding Specialist & AI Dev    ║
     ║                                      ║
     ╚══════════════════════════════════════╝
     
-    Interessado no código? Confira meu GitHub!
-    🔗 https://github.com/Dallan99
+    🚀 Funcionalidades carregadas:
+    • ✅ Scroll suave e barra de progresso
+    • ✅ Animações responsivas
+    • ✅ Navegação inteligente
+    • ✅ Efeitos hover avançados
+    • ✅ Suporte a acessibilidade
+    • ✅ Menu mobile responsivo
+    • ✅ Performance otimizada
+    
+    💡 Especializado em Vibe Coding e IA Generativa
+    🔗 GitHub: https://github.com/Dallan99
+    
+    🎯 Novos projetos em destaque:
+    • Ilha Norte Express: Landing page para entregas
+    • WebFlow Solutions: Site institucional B2B
     `);
-
+    
+    console.log('🎉 CV totalmente carregado e funcional!');
 });
-
-// ===================================
-// CSS ANIMATIONS KEYFRAMES
-// ===================================
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideInRight {
-        from {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
-    }
-    
-    @keyframes fadeInUp {
-        from {
-            transform: translateY(30px);
-            opacity: 0;
-        }
-        to {
-            transform: translateY(0);
-            opacity: 1;
-        }
-    }
-    
-    .typing-cursor {
-        animation: blink 1s infinite;
-    }
-    
-    @keyframes blink {
-        0%, 50% { opacity: 1; }
-        51%, 100% { opacity: 0; }
-    }
-    
-    /* Dark theme styles (if implemented) */
-    .dark-theme {
-        --primary-color: #1a365d;
-        --secondary-color: #2980b9;
-        --text-dark: #e2e8f0;
-        --bg-light: #1a202c;
-        --bg-card: #2d3748;
-    }
-    
-    .dark-theme .header {
-        background: linear-gradient(135deg, #1a365d 0%, #2980b9 100%);
-    }
-`;
-
-document.head.appendChild(style);
